@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person.js'
 import UserInput from './User/UserInput.js'
 import UserOutput from './User/UserOutput.js'
 import ValidationInput from './validation/ValidationInput.js'
 import ValidationOutput from './validation/ValidationOutput.js';
-import Char from './Char/Char'
-export default class App extends Component {
+import Char from './Char/Char';
+
+
+class App extends Component {
   state = {
     persons:[
       {id:'asd23', name:'Max', age:28},
@@ -109,11 +112,16 @@ export default class App extends Component {
     });
 
     const Style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       borderRadius: 50,
-      padding: '8px'
+      padding: '8px',
+      ':hover': {
+        background: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
@@ -132,7 +140,12 @@ export default class App extends Component {
           
        </div>
       );
-
+    
+    Style.backgroundColor = 'red';
+    Style[':hover']= {
+        background: 'salmon',
+        color: 'black'
+      }
     };
 
     const outputStyle ={
@@ -140,10 +153,30 @@ export default class App extends Component {
       backgroundColor:'pink',
       color: 'yellow'
     }
+    
+    //adding dynamic styling with different classes
+    const classes = [];
+
+    if(this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if(this.state.persons.length <=1){
+      classes.push('bold');
+    }
+
+    
+    console.log(classes)
+    
+    
     return (
+    <StyleRoot>
       <div className="App">
-        <h1>My React my APP</h1>
-        <button style={Style} onClick={this.togglePersonHandler}>Switch Name</button>
+        <h1>React Validations and Styling</h1>
+        
+        <button style={Style} onClick={this.togglePersonHandler}>Switch</button>
+        <div>
+          <p className={classes.join(" ")}>Click on Element to Remove it from the List Below</p>
+        </div>
         {persons}
 
         <hr />
@@ -167,7 +200,9 @@ export default class App extends Component {
         {charList}
        
       </div>
+    </StyleRoot>
     );
   }
 }
 
+export default Radium(App);
