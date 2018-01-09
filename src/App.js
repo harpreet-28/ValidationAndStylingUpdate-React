@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Radium, { StyleRoot } from 'radium';
+import classes from './App.css';
+
 import Person from './Person/Person.js'
 import UserInput from './User/UserInput.js'
 import UserOutput from './User/UserOutput.js'
@@ -118,10 +118,7 @@ class App extends Component {
       border: '1px solid blue',
       borderRadius: 50,
       padding: '8px',
-      ':hover': {
-        background: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     }
 
     let persons = null;
@@ -142,10 +139,7 @@ class App extends Component {
       );
     
     Style.backgroundColor = 'red';
-    Style[':hover']= {
-        background: 'salmon',
-        color: 'black'
-      }
+    
     };
 
     const outputStyle ={
@@ -155,13 +149,13 @@ class App extends Component {
     }
     
     //adding dynamic styling with different classes
-    const classes = [];
+    const assignedClasses = [];
 
     if(this.state.persons.length <= 2){
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if(this.state.persons.length <=1){
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     
@@ -169,13 +163,13 @@ class App extends Component {
     
     
     return (
-    <StyleRoot>
-      <div className="App">
+   
+      <div className={classes.App}>
         <h1>React Validations and Styling</h1>
         
         <button style={Style} onClick={this.togglePersonHandler}>Switch</button>
         <div>
-          <p className={classes.join(" ")}>Click on Element to Remove it from the List Below</p>
+          <p className={assignedClasses.join(" ")}>Click on Element to Remove it from the List Below</p>
         </div>
         {persons}
 
@@ -200,9 +194,9 @@ class App extends Component {
         {charList}
        
       </div>
-    </StyleRoot>
+    
     );
   }
 }
 
-export default Radium(App);
+export default App;
