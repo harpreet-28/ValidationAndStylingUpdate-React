@@ -103,6 +103,8 @@ class App extends Component {
   render() {
 
 
+
+
     //below function is created to convert charValue String into array using Spilt() and then iterate over the array using map()
     const charList = this.state.charValue.split("").map((ch, index)=>{
       return <Char 
@@ -111,22 +113,13 @@ class App extends Component {
               Clicked={ () => this.charDeleteHandler(index) }/>
     });
 
-    const Style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      borderRadius: 50,
-      padding: '8px',
-      cursor: 'pointer'
-    }
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
       <div>
-      {this.state.persons.map((person, index) => {
+        {this.state.persons.map((person, index) => {
         return <Person 
         click={()=> this.deletePersonHandler(index)}
         name={person.name} 
@@ -137,9 +130,7 @@ class App extends Component {
           
        </div>
       );
-    
-    Style.backgroundColor = 'red';
-    
+       btnClass = classes.Red;
     };
 
     const outputStyle ={
@@ -148,6 +139,8 @@ class App extends Component {
       color: 'yellow'
     }
     
+   
+
     //adding dynamic styling with different classes
     const assignedClasses = [];
 
@@ -157,17 +150,15 @@ class App extends Component {
     if(this.state.persons.length <=1){
       assignedClasses.push(classes.bold);
     }
-
-    
-    console.log(classes)
-    
     
     return (
    
       <div className={classes.App}>
         <h1>React Validations and Styling</h1>
         
-        <button style={Style} onClick={this.togglePersonHandler}>Switch</button>
+        <button 
+        className={btnClass}
+        onClick={this.togglePersonHandler}>Switch</button>
         <div>
           <p className={assignedClasses.join(" ")}>Click on Element to Remove it from the List Below</p>
         </div>
