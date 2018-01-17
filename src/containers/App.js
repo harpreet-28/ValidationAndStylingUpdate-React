@@ -7,7 +7,7 @@ import ValidationInput from '../components/validation/ValidationInput.js';
 import ValidationOutput from '../components/validation/ValidationOutput.js';
 import Char from '../components/Char/Char';
 import Persons from '../components/Persons/Persons.js';
-
+import Cockpit from '../components/Cockpit/Cockpit';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
 
@@ -116,7 +116,7 @@ class App extends Component {
     });
 
     let persons = null;
-    let btnClass = '';
+    
 
     if (this.state.showPersons) {
       persons = (
@@ -129,7 +129,6 @@ class App extends Component {
       />    
        </div>
       );
-       btnClass = classes.Red;
     };
 
     const outputStyle ={
@@ -141,26 +140,15 @@ class App extends Component {
    
 
     //adding dynamic styling with different classes
-    const assignedClasses = [];
-
-    if(this.state.persons.length <= 2){
-      assignedClasses.push(classes.red);
-    }
-    if(this.state.persons.length <=1){
-      assignedClasses.push(classes.bold);
-    }
+    
     
     return (
    
       <div className={classes.App}>
-        <h1>React Validations and Styling</h1>
-        
-        <button 
-        className={btnClass}
-        onClick={this.togglePersonHandler}>Switch</button>
-        <div>
-          <p className={assignedClasses.join(" ")}>Click on Element to Remove it from the List Below</p>
-        </div>
+        <Cockpit 
+        showPersons={this.state.showPersons}
+        persons={this.state.persons} 
+        clicked={this.togglePersonHandler}/>
         {persons}
 
         <hr />
