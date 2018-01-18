@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person.js';
+// import Person from '../components/Persons/Person/Person.js';
 import UserInput from '../components/User/UserInput.js';
 import UserOutput from '../components/User/UserOutput.js';
 import ValidationInput from '../components/validation/ValidationInput.js';
@@ -9,7 +9,7 @@ import Char from '../components/Char/Char';
 import Persons from '../components/Persons/Persons.js';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
+// import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
 
 class App extends Component {
   state = {
