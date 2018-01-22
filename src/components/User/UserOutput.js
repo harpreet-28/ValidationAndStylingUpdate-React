@@ -11,6 +11,7 @@ const UserOutput = (props)=>{
     }
     return(
              <div className="users" >
+             <h4>User Output</h4>
                 <p style={style}>{props.username1}</p>
                  <p style={style}>{props.username2}</p>
             </div>
